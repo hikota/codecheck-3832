@@ -9,8 +9,8 @@ class Date(object):
 def displayDayOfTheWeek(daysInYear, daysInMonth, daysInWeek, date):
   """曜日を表示する"""
   dayOfTheWeeks = [chr(i) for i in range(65,65+26)]
-  monthsInYear = int(daysInYear / daysInMonth)
-  remainDaysInYear = int(daysInYear - daysInMonth * monthsInYear)
+  monthsInYear = daysInYear // daysInMonth
+  remainDaysInYear = daysInYear - daysInMonth * monthsInYear
   if checkAdditionalMonth(date, daysInMonth, remainDaysInYear):
     monthsInYear += 1
    
@@ -23,7 +23,7 @@ def displayDayOfTheWeek(daysInYear, daysInMonth, daysInWeek, date):
   
 def checkAdditionalMonth(date, daysInMonth, remainDaysInYear):
   """dateで渡された年が1月多くなるかどうかの判定"""
-  if int((date.year * remainDaysInYear) / daysInMonth) != int((date.year - 1) * remainDaysInYear / daysInMonth):
+  if ((date.year * remainDaysInYear) // daysInMonth) != ((date.year - 1) * remainDaysInYear // daysInMonth):
     return True
   else:
     return False
